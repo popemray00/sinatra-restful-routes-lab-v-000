@@ -4,13 +4,15 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
   get '/' do
+    @recipes = Recipe.all
     erb :index
   end
 
   get '/new' do
-    @recipe = Recipe.new(name: => params[:name], ingredients: => params[:ingredients], cook_time: => params[:cook_time])
     erb :new
   end
+
+  post '/'
 
 
 end
