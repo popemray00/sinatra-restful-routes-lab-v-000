@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
   get '/' do
     redirect to '/recipes'
   end
-  
+
   get '/recipes' do
     @recipes = Recipe.all
     erb :index
@@ -19,5 +19,6 @@ class ApplicationController < Sinatra::Base
 
   post '/recipes' do
     @recipe = Recipe.create(name: params[:name], ingredients: params[:ingredients], cook_time: params[:cook_time])
+    redirect to "/recipes/#{@recipe.id}"
   end
 end
